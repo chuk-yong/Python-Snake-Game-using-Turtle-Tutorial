@@ -6,10 +6,16 @@ This code is on: https://www.edureka.co/blog/python-turtle-module/ and this yout
 
 # Table of content:
 1. [Setup the canvas](#canvas)
-2. Setup Head of Snake
-3. Setup Food
-4. Move Snake
-5. 
+2. [Setup Head of Snake](#headofSnake)
+3. [Moving the Snake](#moveSnake)
+4. [Add Delay](#delay)
+5. [Movement Control](#controlSnake)
+6. [Food and Collision detection](#food&collision)
+7. [Adding Snake body/segments](#segment)
+8. [Border Collision](#borderCollision)
+9. [Body Collision](#bodyCollision)
+10. [Final. Score](#score)
+
 
 <a name='canvas'></a>
 ## 1. Setting up the canvas
@@ -27,6 +33,7 @@ If you run snake01.py, this is what you will get:
 
 ![Canvas](./SnakeScreen-01.png)
 
+<a name='headofSnake'></a>
 ## 2. Set up the head of the snake
 ```
 head = turtle.Turtle()
@@ -39,6 +46,7 @@ Running snake02.py will show a small square in the middle of the canvas.  This i
 
 ![Snake Head](./SnakeScreen-02.png)
 
+<a name='moveSnake'></a>
 ## 3. Move the snake
 I am going to define a function for this:
 ```
@@ -73,6 +81,7 @@ If you run snake03.py, you will see the snake run off the screen to the right.
 
 It's not very interesting but it shows that the code is running.
 
+<a name='delay'></a>
 ## 4. Adding delay
 Our snake is running too fast.  We need a little bit of delay or else our game would be unplayable.
 ```
@@ -88,6 +97,7 @@ to our game loop will slow each loop or "frame" by the delay we specified.
 
 Now if you run snake04.py, you should see the small black square, representing the head of the snake, moving to the right and out of the canvas.
 
+<a name='controlSnake'></a>
 ## 5. Moving the snake
 Not that we understand the basic of how Turtle draw objects and redraw frames. We start to assemble the control of movement.
 
@@ -132,6 +142,7 @@ Remember to set head.direction = "stop". Else the snake will immediately move wh
 
 Running snake05.py, you should be able to control the snake by moving the arrow keys.
 
+<a name='food&collision'></a>
 ## 6. Adding Food and collision detection
 To add Food, simply create another Turtle object:
 ```
@@ -160,6 +171,7 @@ import random
 ```
 Run snake06.py and move your snake towards the food.  The food will 'disappear' and reappear somewhere else.
 
+<a name='segment'></a>
 ## 7. Add snake segments and move
 When the snake 'ate' the food, it's body will lengthen.  
 Since we do not know how many segments we need to add, it is best to use a list.  This list will store the positions of the snake's body. 
@@ -195,6 +207,7 @@ def move_seg():
 ```
 Check out the effect by running snake07.py
 
+<a name='borderCollision'></a>
 ## 8. Collison with border
 It's time now to deal with how the game would end -- if the snake hits the border or it collides with it self.
 
@@ -213,6 +226,7 @@ head.direction = "stop"
 ```
 Do run snake08.py and check if it works.
 
+<a name='bodyCollision'></a>
 ## 9. Collison with body
 How do we check if the snake head hits its own body? 
 We check if the head's position is near any part of its body by checking their distance apart.
@@ -244,6 +258,7 @@ food.goto(x,y)
 ```
 Try it out with snake09.py!
 
+<a name='score'></a>
 ## 10. Adding score board
 Now that the movement part is complete, we will add the finishing touch - the score board.
 As you would guess it, the score board is just another Turtle object. One that we could write on.
