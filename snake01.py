@@ -6,4 +6,4 @@ scr.bgcolor("#33cccc")
 scr.setup(600,600)
 scr.title("Snake Game")
 
-# turtle.Screen().exitonclick()
+turtle.Screen().exitonclick()
