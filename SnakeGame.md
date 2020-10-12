@@ -1,5 +1,5 @@
-<div align="center"> 
-## Python Snake Game Uning Turtle
+## <div align="center"> 
+Python Snake Game Uning Turtle
 </div>
 
 This is a step-by-step guide to how I coded this project.
