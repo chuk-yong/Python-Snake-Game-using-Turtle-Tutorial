@@ -17,14 +17,6 @@ head.color("black")
 head.penup() # do not draw line
 head.direction = "stop"
 
-# Snake Food
-food = turtle.Turtle()
-food.speed(0)
-food.shape("circle")
-food.color("red")
-food.penup() # do not draw line
-food.goto(0,150)
-
 # Functions for moving snake
 def move():
     if head.direction == "up":

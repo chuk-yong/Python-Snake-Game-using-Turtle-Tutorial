@@ -4,24 +4,24 @@ import random
 
 delay = 0.1
 
-# Setup the screen
 scr = turtle.Screen()
 scr.bgcolor("#33cccc")
 scr.setup(600,600)
 scr.title("Snake Game")
 
-# Snake Head
 head = turtle.Turtle()
-head.speed(0)
 head.shape("square")
 head.color("black")
+head.goto(0,0)
+head.speed(0)
 head.penup() # do not draw line
 head.direction = "stop"
 
 # Snake Food
+
 food = turtle.Turtle()
-food.speed(0)
 food.shape("circle")
+food.speed(0)
 food.color("red")
 food.penup() # do not draw line
 food.goto(0,150)
@@ -76,6 +76,17 @@ def go_left():
 def go_right():
     head.direction = "right"
 
+def endSnake():
+    time.sleep(1)
+    head.goto(0,0)
+    head.direction = "stop"
+    for s in seg:
+        s.goto(1000,1000)
+    seg.clear()
+    x = random.randint(-290, 290)
+    y = random.randint(-290, 290)
+    food.goto(x,y)
+
 # keyboard binding
 scr.listen()
 scr.onkeypress(go_up, "Up")
@@ -83,15 +94,15 @@ scr.onkeypress(go_down,"Down")
 scr.onkeypress(go_left,"Left")
 scr.onkeypress(go_right,"Right")
 
-# Game loop
 while True:
     scr.update()
-    # check for collison with border
+    # check for collision with border
     if head.xcor() >290 or head.xcor() <-290 or head.ycor() >290 or head.ycor() <-290:
-        time.sleep(1)
-        head.goto(0,0)
-        head.direction = "stop"
-
+        endSnake()
+    # Check for head to body collision
+    for s in seg:
+        if s.distance(head) < 20:
+            endSnake()
     # Check for collision with food
     if head.distance(food) < 20:
         x = random.randint(-290,290)
@@ -99,7 +110,7 @@ while True:
         food.goto(x,y)
         # Add snake segment
         add_seg()
-    
+
     move_seg()
     move()
     time.sleep(delay)

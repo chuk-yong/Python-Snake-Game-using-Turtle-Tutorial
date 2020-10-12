@@ -4,34 +4,27 @@ import random
 
 delay = 0.1
 
-def startScreen():
-    # Setup the screen
-    global scr
-    scr = turtle.Screen()
-    scr.bgcolor("#33cccc")
-    scr.setup(600,600)
-    scr.title("Snake Game")
+scr = turtle.Screen()
+scr.bgcolor("#33cccc")
+scr.setup(600,600)
+scr.title("Snake Game")
 
-def startSnake():
-    # Snake Head
-    global head
-    head = turtle.Turtle()
-    head.shape("square")
-    head.color("black")
-    head.goto(0,0)
-    head.speed(0)
-    head.penup() # do not draw line
-    head.direction = "stop"
+head = turtle.Turtle()
+head.shape("square")
+head.color("black")
+head.goto(0,0)
+head.speed(0)
+head.penup() # do not draw line
+head.direction = "stop"
 
 # Snake Food
-def startFood():
-    global food
-    food = turtle.Turtle()
-    food.shape("circle")
-    food.speed(0)
-    food.color("red")
-    food.penup() # do not draw line
-    food.goto(0,150)
+
+food = turtle.Turtle()
+food.shape("circle")
+food.speed(0)
+food.color("red")
+food.penup() # do not draw line
+food.goto(0,150)
 
 ## Snake segments
 seg = []
@@ -84,6 +77,7 @@ def go_right():
     head.direction = "right"
 
 def endSnake():
+    global score
     time.sleep(1)
     head.goto(0,0)
     head.direction = "stop"
@@ -93,18 +87,36 @@ def endSnake():
     x = random.randint(-290, 290)
     y = random.randint(-290, 290)
     food.goto(x,y)
+    score = -10
+    updateScore()
 
-    
-## Game loop
-startScreen()
-startSnake()
-startFood()
 # keyboard binding
 scr.listen()
 scr.onkeypress(go_up, "Up")
 scr.onkeypress(go_down,"Down")
 scr.onkeypress(go_left,"Left")
 scr.onkeypress(go_right,"Right")
+
+# Initialise score
+score = 0
+high_score = 0
+
+board = turtle.Turtle()
+board.speed(0)
+board.shape("square")
+board.color("white")
+board.penup()
+board.hideturtle()
+board.goto(0,260)
+board.write("Score: {} High Score: {}".format(score,high_score), align="center", font=("Courier", 24, "normal"))
+
+def updateScore():
+    global score, high_score
+    score += 10
+    if score > high_score:
+        high_score = score
+    board.clear()
+    board.write("Score: {} High Score: {}".format(score,high_score), align="center", font=("Courier", 24, "normal"))
 
 while True:
     scr.update()
@@ -120,9 +132,10 @@ while True:
         x = random.randint(-290,290)
         y = random.randint(-290,290)
         food.goto(x,y)
+        updateScore()
         # Add snake segment
         add_seg()
-    
+
     move_seg()
     move()
     time.sleep(delay)
