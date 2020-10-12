@@ -1,8 +1,6 @@
 ## Python Snake Game Using Turtle
 
-This is a step-by-step guide to how I code this project.
-
-This code is on: https://www.edureka.co/blog/python-turtle-module/ and this youtube tutorial: https://www.youtube.com/watch?v=BP7KMlbvtOo&list=PLlEgNdBJEO-n8k9SR49AshB9j7b5Iw7hZ&index=1
+This is a step-by-step guide to how I code this project by following the examples on: https://www.edureka.co/blog/python-turtle-module/ and this youtube tutorial: https://www.youtube.com/watch?v=BP7KMlbvtOo&list=PLlEgNdBJEO-n8k9SR49AshB9j7b5Iw7hZ&index=1
 
 # Table of content:
 1. [Setup the canvas](#canvas)
