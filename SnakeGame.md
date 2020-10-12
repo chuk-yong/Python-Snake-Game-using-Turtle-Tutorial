@@ -1,6 +1,6 @@
-<p align='center> 
+<div align='center> 
 ## Python Snake Game Uning Turtle
-</p>
+</div>
 
 This is a step-by-step guide to how I coded this project.
 
