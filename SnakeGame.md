@@ -206,6 +206,7 @@ def move_seg():
         seg[0].goto(x,y) 
 ```
 Check out the effect by running snake07.py
+
 ![AddSegments](./snake07.gif)
 
 <a name='borderCollision'></a>
@@ -259,6 +260,7 @@ y = random.randint(-290, 290)
 food.goto(x,y)
 ```
 Try it out with snake09.py!
+
 ![Snake09](./snake09.gif)
 
 <a name='score'></a>
@@ -307,5 +309,6 @@ Lastly, we have to reset the board after the game ends. So, in the endGame() fun
     updateScore()
 ```
 That's it! Our snake game is now complete: snake10.py
+
 ![SnakeGame](./snake10.gif)
 
