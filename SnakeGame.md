@@ -1,6 +1,6 @@
-<p align="center"> 
-##Python Snake Game Uning Turtle
-</p>
+<p align="center"><b>
+Python Snake Game Uning Turtle
+  </b></p>
 
 This is a step-by-step guide to how I coded this project.
 
