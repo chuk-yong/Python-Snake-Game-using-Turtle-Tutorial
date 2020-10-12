@@ -19,7 +19,7 @@ This code is on: https://www.edureka.co/blog/python-turtle-module/ and this yout
 
 <a name='canvas'></a>
 ## 1. Setting up the canvas
-import turle and then create the screen object.  
+import Turle and then create the screen object.  
 ```
 # Setup the screen
 scr = turtle.Screen()
@@ -27,9 +27,9 @@ scr.bgcolor("#33cccc")
 scr.setup(600,600)
 scr.title("Snake Game")
 ```
-If you run this, you will find a screen pop up and quickly closes. Add this line ``` turtle.Screen().exitonclick() ``` so that you can close it by clicking it.
+If you run this, you will find the screen pops up and quickly closes. Add this line ``` turtle.Screen().exitonclick() ``` so that you can close it by clicking anywhere inside the screen.
 
-If you run snake01.py, this is what you will get:
+Running snake01.py, this is what you will get:
 
 ![Canvas](./SnakeScreen-01.png)
 
@@ -59,7 +59,7 @@ For now, I just want to test if this works.  There are 2 lines we need to add un
 ```
 head.penup()
 ```
-We do not want to draw a line while the snake is moving.  Turtle is essentially a program to animate drawing.  By default, you will see a line when you move an object from one position to another. So calling the method penup(), we ask Turtle to 'lift' up the pen so that it will not follow the snake movement with a pen line.
+We do not want to draw a line while the snake is moving.  Turtle is essentially a program to animate drawing.  By default, you will see a line when you move an object from one position to another. By calling the method penup(), we ask Turtle to 'lift' up the pen so that it will not follow the snake movement with a pen line.
 
 Second being:
 ```
@@ -83,25 +83,25 @@ It's not very interesting but it shows that the code is running.
 
 <a name='delay'></a>
 ## 4. Adding delay
-Our snake is running too fast.  We need a little bit of delay or else our game would be unplayable.
+Our snake is running too fast!  Let's add a little bit of delay or else our game would be unplayable.
 ```
 import time
 delay = 0.1
 ```
 The time function let us accomplish that.  We will set our delay to 0.1s.
-Add
+
 ```
 time.sleep(delay)
 ```
-to our game loop will slow each loop or "frame" by the delay we specified.
+Add it to our game loop will slow each loop or "frame" by the delay we specified.
 
 Now if you run snake04.py, you should see the small black square, representing the head of the snake, moving to the right and out of the canvas.
 
 <a name='controlSnake'></a>
 ## 5. Moving the snake
-Not that we understand the basic of how Turtle draw objects and redraw frames. We start to assemble the control of movement.
+Not that we understand the basic of how Turtle draw objects and redraw frames. We will start to assemble the control of movement.
 
-Let's complete the function move():
+Let's add a function called move():
 ```
 def move():
     if head.direction == "up":
@@ -129,7 +129,7 @@ def go_left():
 def go_right():
     head.direction = "right"
 ```
-Now, to sense which direction to set, we use Turtle's listen() to listen for key press.  I am using the arrow keys, so:
+Now, to sense which direction to set, we will use Turtle's listen() method to listen for key press.  I am using the arrow keys, so:
 ```
 # keyboard binding
 scr.listen()
@@ -154,7 +154,7 @@ food.color("red")
 food.penup() # do not draw line
 food.goto(0,150)
 ```
-This will add Food, represented by a red circle 150 pixels on top of our snake.  You can change position later.  
+This will add Food, represented by a red circle 150 pixels on top of our snake.  You can change the position later.  
 
 Now, to detect if they are close to each other, we can use the method in Turtle 's distance().
 ```
@@ -163,7 +163,7 @@ if head.distance(food) < 20:
         y = random.randint(-290,290)
         food.goto(x,y)
 ```
-Here, once we detected that the snake head's distance to the food is less than 20 pixel, we will randomly generate a new co-ordinate and place the food there.
+Here, once we detected that the snake head's distance to the food is less than 20 pixel, we will randomly generate a new co-ordinate and place the food there.  This will create an illusion that the snake ate the food and new food pops up immediately and randomly on the canvas.
 
 We need to use the functions in random library, so add this to the beginning of the code:
 ```
@@ -173,7 +173,8 @@ Run snake06.py and move your snake towards the food.  The food will 'disappear' 
 
 <a name='segment'></a>
 ## 7. Add snake segments and move
-When the snake 'ate' the food, it's body will lengthen.  
+When the snake eats the food, its body will gain a segment.
+
 Since we do not know how many segments we need to add, it is best to use a list.  This list will store the positions of the snake's body. 
 ```
 seg = []
@@ -191,6 +192,7 @@ def add_seg():
 For movement, here's something to think about.
 
 If we move the head first and then each segment, you will see a gap.  So it is better to move the segments from last to first and then move the head.  As if the back is pushing the front.  Just like how a real snake would move.
+
 First we have to find how many segments in the list using len(), then move the last segment to to previous segment.
 Also, the very first item in seg will have to move to occupy the current position of the head.
 ``` 
@@ -229,20 +231,21 @@ Do run snake08.py and check if it works.
 <a name='bodyCollision'></a>
 ## 9. Collison with body
 How do we check if the snake head hits its own body? 
-We check if the head's position is near any part of its body by checking their distance apart.
+We check if the head's position is near any part of its body by calculating their distance apart.
 ```
 for s in seg:
         if s.distance(head) < 20:
 ```
-If that happens, we would do the same thing as we hit the border, reset the snake.  Rather than writing the same lines, let's put them in a function call endSnake().
+If that happens, we would do the same thing as we hit the border: reset the snake.  Rather than writing the same lines, let's put them in a function call endSnake().
 ```
 def endSnake():
     time.sleep(1)
     head.goto(0,0)
     head.direction = "stop"
 ```
-If you had run snake08.py, you would notice something weird when the game restarts.  There's a grey box in the middle.  That's the remians of the snake's body from previous gameplay.
-I have tried to reset/clear screen but all the commands don't seem to do much.  So I had to follow other's advise and send the body segments out of the canvas.
+If you had run snake08.py, you would notice something weird when the game restarts.  There's a grey box in the middle.  That's the remians of the snake's body/segments from previous gameplay.
+
+I have tried to reset/clear screen but all the commands don't seem to do much.  So I had to follow other's advise and send the body/segments out of the canvas.
 ```
 for s in seg:
     s.goto(1000,1000)
@@ -250,7 +253,7 @@ seg.clear()
 ```
 seg.clear() sets the segment count back to zero.
 
-Also, you would have notice that the food has been starting at the same spot north of the head.  We now send it to a random co-ordinate.
+Also, you would have notice that the food had been starting at the same spot north of the head.  We now send it to a random co-ordinate.
 ```
 x = random.randint(-290, 290)
 y = random.randint(-290, 290)
@@ -259,9 +262,10 @@ food.goto(x,y)
 Try it out with snake09.py!
 
 <a name='score'></a>
-## 10. Adding score board
+## 10. Finally - Adding score board
 Now that the movement part is complete, we will add the finishing touch - the score board.
-As you would guess it, the score board is just another Turtle object. One that we could write on.
+
+As you would have guessed it, the score board is just another Turtle object. One that we could write on.
 ```
  Initialise score
 score = 0
@@ -276,9 +280,8 @@ board.hideturtle()
 board.goto(0,260)
 board.write("Score: {} High Score: {}".format(score,high_score), align="center", font=("Courier", 24, "normal"))
 ```
-Once setup and initialised. In game, we will use a function to update the score.
+We will use a function to update the score.
 
-The updateScore function takes in the current score as s and high score as h.
 Everytime the snake eats the food, we will increase the score by 10 and checks if we need to update the high score.
 
 ```
@@ -291,7 +294,7 @@ def updateScore():
     board.write("Score: {} High Score: {}".format(score,high_score), align="center", font=("Courier", 24, "normal"))
 
 ```
-Since we need to use the same variables: score and high_score in the funtion above ,we have to declare it as global to use it in the function.
+Since we need to use the ***score*** and ***high_score*** variables in the funtion above ,we have to declare it as global to use it in the function.
 
 Add this line under the game loop where we check for collision with food:
 ```
@@ -303,7 +306,5 @@ Lastly, we have to reset the board after the game ends. So, in the endGame() fun
     score = -10
     updateScore()
 ```
-That's it! Our snake game is now complete.
-
-snake10.py
+That's it! Our snake game is now complete: snake10.py
 
