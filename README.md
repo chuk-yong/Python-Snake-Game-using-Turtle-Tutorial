@@ -211,7 +211,7 @@ Check out the effect by running snake07.py
 ![AddSegments](./snake07.gif)
 
 <a name='borderCollision'></a>
-## 8. Collison with border
+## 8. Collision with border
 It's time now to deal with how the game would end -- if the snake hits the border or it collides with it self.
 
 Start with border first.  
